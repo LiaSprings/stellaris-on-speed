@@ -1412,7 +1412,22 @@ d_alloys_5 = {
 	resources = {
 		category = orbital_mining_deposits
 		produces = {
-			alloys = 5
+			alloys = 25
+		}
+	}
+
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}
+
+d_alloys_10 = {
+	station = shipclass_mining_station
+	is_for_colonizable = no
+
+	resources = {
+		category = orbital_mining_deposits
+		produces = {
+			alloys = 50
 		}
 	}
 

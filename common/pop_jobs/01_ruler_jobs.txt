@@ -21,38 +21,30 @@ head_researcher = {
 	resources = {
 		category = planet_researchers
 		produces = {
-			physics_research = 25
-			engineering_research = 25
-			society_research = 25
+			unity = 10
+			physics_research = 30
+			engineering_research = 30
+			society_research = 30
+		}
+		upkeep = {
+			consumer_goods = 10
 		}
 	}
 
-	planet_modifier = {
-		planet_amenities_add = 5
-	}
-
+	# This needs to be triggered planet modifier to get the correct scope.
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
+			always = yes
 		}
-		modifier = {
-			planet_amenities_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			planet_amenities_add = -1
-		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
+		mult = value:job_weights_research_modifier|JOB|head_researcher|
+		mult = value:job_weights_modifier|JOB|head_researcher|RESOURCE|unity|FACTOR|0.25|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.2
 			has_citizenship_rights = no
@@ -63,89 +55,8 @@ head_researcher = {
 			has_living_standard = { type = living_standard_academic_privilege }
 		}
 		modifier = {
-			factor = 3
-			has_trait = trait_erudite
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_robot_logic_engines
-				has_trait = trait_intelligent
-			}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_natural_engineers
-				has_trait = trait_natural_physicists
-				has_trait = trait_natural_sociologists
-			}
-		}
-		modifier = {
 			factor = 5
 			has_job = head_researcher
-		}
-		modifier = {
-			factor = 0.65
-			has_trait = trait_presapient_proles
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_latent_psionic
-		}
-		modifier = {
-			factor = 2
-			has_trait = trait_psionic
-		}
-		modifier = {
-			factor = 0.1
-			has_trait = trait_enigmatic_intelligence_failed
-		}
-		modifier = {
-			factor = 2
-			OR = {
-				has_trait = trait_enigmatic_intelligence
-				has_trait = trait_enigmatic_intelligence_poor
-			}
-		}
-		modifier = {
-			factor = 2
-				has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 2
-				has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
 		}
 		modifier = {
 			factor = 0.01
@@ -183,70 +94,29 @@ high_priest = {
 	resources = {
 		category = planet_priests
 		produces = {
-			unity = 25
-			society_research = 10
+			unity = 30
 		}
-		produces = {
-			trigger = {
-				exists = owner
-				owner = { has_valid_civic = civic_exalted_priesthood }
-			}
-			unity = 5
-		}				
+		upkeep = {
+			consumer_goods = 10
+		}
 	}
 
-	planet_modifier = {
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
 		planet_amenities_add = 5
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			planet_amenities_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			planet_amenities_add = -1
-		}
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
+		mult = value:job_weights_modifier|JOB|high_priest|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
 			NOT = { has_trait = trait_mechanical }
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
 		}
 		modifier = {
 			factor = 1.2
@@ -260,34 +130,6 @@ high_priest = {
 		modifier = {
 			factor = 5
 			has_job = high_priest
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
 		}
 		# crisis purge
 		modifier = {
@@ -304,11 +146,12 @@ high_priest = {
 	}
 }
 
-administrator = {
+politician = {
 	category = ruler
 	condition_string = RULER_JOB_TRIGGER
 	building_icon = building_capital
 	clothes_texture_index = 1
+	icon = administrator
 
 	possible_pre_triggers = {
 		has_owner = yes
@@ -321,96 +164,35 @@ administrator = {
 	possible_precalc = can_fill_ruler_job
 
 	resources = {
-		category = planet_administrators
+		category = planet_politicians
 		produces = {
-			unity = 15
+			unity = 30
 		}
-	}
-
-	planet_modifier = {
-		planet_amenities_add = 8
+		upkeep = {
+			consumer_goods = 10
+		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
+			always = yes
 		}
-		modifier = {
-			planet_amenities_add = 1.6
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			planet_amenities_add = -1.6
-		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
+		mult = value:job_weights_modifier|JOB|politician|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
 			NOT = { has_trait = trait_mechanical }
 		}
 		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			factor = 1.25
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.75
-			has_trait = trait_quarrelsome
-		}
-		modifier = {
 			factor = 5
-			has_job = administrator
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
+			has_job = politician
 		}
 		# crisis purge
 		modifier = {
@@ -446,31 +228,33 @@ noble = {
 	resources = {
 		category = planet_nobles
 		produces = {
-			unity = 15
+			unity = 30
+		}
+		upkeep = {
+			consumer_goods = 10
 		}
 	}
 
 	planet_modifier = {
-		planet_stability_add = 5
+		planet_stability_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
+		mult = value:job_weights_modifier|JOB|noble|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
 		modifier = {
 			factor = 0.1
 			has_citizenship_rights = no
 			NOT = { has_trait = trait_mechanical }
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_propaganda_machines
-				has_trait = trait_traditional
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_quarrelsome
 		}
 		modifier = {
 			factor = 0.1
@@ -480,22 +264,6 @@ noble = {
 		modifier = {
 			factor = 5
 			has_job = noble
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_necrophage
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
 		}
 		# crisis purge
 		modifier = {
@@ -535,111 +303,36 @@ merchant = {
 
 	possible_precalc = can_fill_ruler_job
 
-	planet_modifier = {
-		planet_amenities_add = 5
-		trade_value_add = 60
-	}
-
 	resources = {
 		category = planet_merchants
-		produces = {
-			trigger = {
-				exists = owner
-				owner = { has_civic = civic_merchant_guilds	}
-			}
-			unity = 10
+		upkeep = {
+			consumer_goods = 10
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_thrifty
+			always = yes
 		}
-		modifier = {
-			trade_value_add = 15
-		}
+		trade_value_add = 60
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_nuumismatic_administration
+			always = yes
 		}
-		modifier = {
-			trade_value_add = 15
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			planet_amenities_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			planet_amenities_add = -1
-		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
-		modifier = {
-			factor = 2.0
-			has_trait = trait_thrifty
-		}
-		modifier = {
-			factor = 2.0
-			has_trait = trait_nuumismatic_administration
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
-		}
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 5
 			has_job = merchant
-		}
-		modifier = {
-			factor = 1.25
-			owner = { has_civic = civic_merchant_guilds	}
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.125
-			owner = { has_civic = civic_merchant_guilds	}
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 1.125
-			owner = { has_civic = civic_merchant_guilds	}
-			has_trait = trait_robust
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
 		}
 		# crisis purge
 		modifier = {
@@ -682,96 +375,37 @@ executive = {
 	resources = {
 		category = planet_executives
 		produces = {
-			unity = 10
+			unity = 30
 		}
-	}
-
-	planet_modifier = {
-		planet_amenities_add = 5
-		trade_value_add = 30
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_thrifty
-		}
-		modifier = {
-			trade_value_add = 7.5
+		upkeep = {
+			consumer_goods = 10
 		}
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			has_trait = trait_nuumismatic_administration
+			always = yes
 		}
-		modifier = {
-			trade_value_add = 7.5
-		}
+		trade_value_add = 20
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
 	}
 
 	triggered_planet_modifier = {
 		potential = {
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
+			always = yes
 		}
-		modifier = {
-			planet_amenities_add = 1
-		}
-	}
-	triggered_planet_modifier = {
-		potential = {
-			has_trait = trait_repugnant
-		}
-		modifier = {
-			planet_amenities_add = -1
-		}
+		planet_amenities_add = 3
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
 	}
 
 	weight = {
 		weight = @ruler_job_weight
-		modifier = {
-			factor = 2.0
-			OR = {
-			has_trait = trait_thrifty
-			has_trait = trait_nuumismatic_administration
-		}
-		}
-		modifier = {
-			factor = 1.5
-			OR = {
-				has_trait = trait_robot_domestic_protocols
-				has_trait = trait_charismatic
-			}
-		}
-		modifier = {
-			factor = 1.25
-			has_trait = trait_brainslug
-		}
-		modifier = {
-			factor = 1.2
-			has_trait = trait_presapient_natural_intellectuals
-		}
-		modifier = {
-			factor = 0.5
-			has_trait = trait_repugnant
-		}
+		mult = value:job_weights_modifier|JOB|executive|RESOURCE|unity|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
 		modifier = {
 			factor = 5
 			has_job = executive
-		}
-		modifier = {
-			factor = 1.5
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_planet_class = pc_habitat }
-		}
-		modifier = {
-			factor = 0.85
-			has_trait = trait_void_dweller_1
-			exists = planet
-			planet = { is_artificial = no }
 		}
 		# crisis purge
 		modifier = {

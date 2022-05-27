@@ -13,7 +13,7 @@ manifesti = {
 	resources = {
 		category = pop_factions
 		produces = {
-			influence = 5
+			unity = 2.5
 		}
 	}
 
@@ -53,8 +53,8 @@ manifesti = {
 			has_ethic = ethic_pacifist
 		}
 		is_shackled_robot = no
-		NOR = {
-			has_trait = trait_nerve_stapled
+		can_think = yes
+		NOT = {
 			has_pop_flag = manifesti_bored
 		}
 	}
@@ -167,14 +167,14 @@ manifesti = {
 
 		trigger = {
 			owner = {
-				has_technology = tech_combat_computers_autonomous
-				any_owned_ship = {
+				has_technology = tech_combat_computers_3
+				any_controlled_ship = {
 					OR = {
-						has_component = COMBAT_COMPUTER_SWARM_AUTONOMOUS
-						has_component = COMBAT_COMPUTER_PICKET_AUTONOMOUS
-						has_component = COMBAT_COMPUTER_LINE_AUTONOMOUS
-						has_component = COMBAT_COMPUTER_ARTILLERY_AUTONOMOUS
-						has_component = COMBAT_COMPUTER_CARRIER_AUTONOMOUS
+						has_component = COMBAT_COMPUTER_SWARM_SAPIENT
+						has_component = COMBAT_COMPUTER_PICKET_SAPIENT
+						has_component = COMBAT_COMPUTER_LINE_SAPIENT
+						has_component = COMBAT_COMPUTER_ARTILLERY_SAPIENT
+						has_component = COMBAT_COMPUTER_CARRIER_SAPIENT
 					}
 				}
 				count_owned_army = {
@@ -320,7 +320,7 @@ manifesti = {
 			description = "EMBRACE_FACTION_DESC"
 
 			cost = {
-				influence = 500
+				unity = 5000
 			}
 
 			potential = {
@@ -328,7 +328,7 @@ manifesti = {
 				owner = {
 					OR = {
 						is_subject = no
-						NOT = { is_subject_type = dominion }
+						NOT = { any_agreement = { agreement_preset = preset_dominion } }
 					}
 				}
 			}

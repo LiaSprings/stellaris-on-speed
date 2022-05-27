@@ -8,7 +8,7 @@ decision_martial_law = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 50
+			unity = 500
 		}
 	}
 
@@ -18,10 +18,7 @@ decision_martial_law = {
 	}
 
 	effect = {
-		custom_tooltip = decision_martial_law_effects_custom
-		hidden_effect = {
-			add_modifier = { modifier = "martial_law" days = -1 }
-		}
+		add_modifier = { modifier = "martial_law" days = -1 }
 	}
 
 	ai_weight = {
@@ -61,7 +58,7 @@ decision_martial_law_machine = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 50
+			unity = 500
 		}
 	}
 
@@ -71,10 +68,7 @@ decision_martial_law_machine = {
 	}
 
 	effect = {
-		custom_tooltip = decision_martial_law_machine_effects_custom
-		hidden_effect = {
-			add_modifier = { modifier = "compliance_protocols" days = -1 }
-		}
+		add_modifier = { modifier = "compliance_protocols" days = -1 }
 	}
 
 	ai_weight = {
@@ -111,7 +105,7 @@ decision_martial_law_hive = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 50
+			unity = 500
 		}
 	}
 
@@ -121,10 +115,7 @@ decision_martial_law_hive = {
 	}
 
 	effect = {
-		custom_tooltip = decision_martial_law_hive_effects_custom
-		hidden_effect = {
-			add_modifier = { modifier = "hunter_killer_drones" days = -1 }
-		}
+		add_modifier = { modifier = "hunter_killer_drones" days = -1 }
 	}
 
 	ai_weight = {
@@ -163,7 +154,7 @@ decision_enact_population_control = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 25
+			unity = 250
 		}
 	}
 
@@ -237,7 +228,7 @@ decision_enact_population_control_gestalt = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 25
+			unity = 250
 		}
 	}
 
@@ -303,7 +294,7 @@ decision_enact_robot_assembly_control = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 25
+			unity = 250
 		}
 	}
 
@@ -381,7 +372,7 @@ decision_expel_population = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 25
+			unity = 250
 		}
 	}
 
@@ -423,7 +414,7 @@ decision_expel_population = {
 						is_robot_pop = no
 						NOR = {
 							has_trait = trait_hive_mind
-							has_trait = trait_nerve_stapled
+							can_think = no
 							is_pop_category = ruler
 						}
 					}
@@ -479,7 +470,7 @@ decision_discourage_growth = {
 	resources = {
 		category = decisions
 		cost = {
-			influence = 25
+			unity = 250
 		}
 	}
 

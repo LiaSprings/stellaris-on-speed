@@ -5,7 +5,7 @@
 @highestTime = 1800
 
 @machineCost = 10000
-@machineTime = 7200
+@machineTime = 1440
 
 @hiveCost = 10000
 @hiveTime = 1440

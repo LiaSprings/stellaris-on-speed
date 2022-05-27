@@ -2,24 +2,25 @@
 # Empire edicts
 ##########################################################################
 
-@Edict1Cost = 100
-@Edict2Cost = 200
-@Edict3Cost = 300
+@Edict1Cost = 50
+@Edict2Cost = 100
+@Edict3Cost = 150
 
 @EdictPerpetual = -1
 
 #################
 # Toggle Edicts
 #################
+
 evacuation_protocols = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict1Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -31,13 +32,7 @@ evacuation_protocols = {
 	potential = {
 		has_origin = origin_doomsday
 		any_owned_planet = {
-			OR = {
-				has_modifier = doomsday_1
-				has_modifier = doomsday_2
-				has_modifier = doomsday_3
-				has_modifier = doomsday_4
-				has_modifier = doomsday_5
-			}
+			is_doomsday_planet = yes
 		}
 	}
 
@@ -46,13 +41,7 @@ evacuation_protocols = {
 			fail_text = "requires_doomsday_colony"
 			any_owned_planet = {
 				habitable_planet = yes
-				NOR = {
-					has_modifier = doomsday_1
-					has_modifier = doomsday_2
-					has_modifier = doomsday_3
-					has_modifier = doomsday_4
-					has_modifier = doomsday_5
-				}
+				is_doomsday_planet = no
 			}
 		}
 	}
@@ -65,53 +54,38 @@ evacuation_protocols = {
 fortify_the_border = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = fortify_the_border }
-			}
-			influence = 100
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = fortify_the_border
-			}
-			influence = 50
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		starbase_upgrade_speed_mult = 0.50
 		country_starbase_capacity_add = 2
-		empire_size_systems_mult = 0.10
 	}
 
 	ai_weight = {
 		weight = @EdictMedPrio
+		modifier = {
+			factor = 0
+			NOT = { has_country_flag = has_encountered_other_empire }
+		}
 	}
 }
 
 nutritional_plenitude = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = nutritional_plenitude }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = nutritional_plenitude
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -119,7 +93,6 @@ nutritional_plenitude = {
 		pop_growth_speed = 0.10
 		biological_pop_happiness = 0.05
 		lithoid_pop_happiness = 0.05
-		empire_size_pops_mult = 0.10
 		planet_pops_organics_food_upkeep_mult = 0.25
 		planet_pops_organics_minerals_upkeep_mult = 0.25
 	}
@@ -144,27 +117,17 @@ nutritional_plenitude = {
 nutritional_plenitude_hive = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = nutritional_plenitude_hive }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = nutritional_plenitude_hive
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		pop_growth_speed = 0.10
-		empire_size_pops_mult = 0.10
 		planet_pops_organics_food_upkeep_mult = 0.25
 		planet_pops_organics_minerals_upkeep_mult = 0.25
 	}
@@ -189,21 +152,12 @@ nutritional_plenitude_hive = {
 expanded_breeding_program_servitor = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = expanded_breeding_program_servitor }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = expanded_breeding_program_servitor
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -211,7 +165,6 @@ expanded_breeding_program_servitor = {
 		pop_growth_speed = 0.20
 		biological_pop_happiness = 0.05
 		lithoid_pop_happiness = 0.05
-		empire_size_pops_mult = 0.10
 		planet_pops_organics_food_upkeep_mult = 0.25
 		planet_pops_organics_minerals_upkeep_mult = 0.25
 	}
@@ -236,12 +189,12 @@ expanded_breeding_program_servitor = {
 fleet_supremacy = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict1Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -264,12 +217,12 @@ fleet_supremacy = {
 diplomatic_grants = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict1Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -291,12 +244,12 @@ diplomatic_grants = {
 enhanced_surveillance = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict2Cost
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -336,12 +289,12 @@ enhanced_surveillance = {
 bureau_of_espionage = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict2Cost
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -385,12 +338,12 @@ bureau_of_espionage = {
 observation_instinct = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict2Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -434,12 +387,12 @@ observation_instinct = {
 covert_analysis_algorithm = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict2Cost
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -483,12 +436,12 @@ covert_analysis_algorithm = {
 tracking_implants = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict3Cost
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -532,12 +485,12 @@ tracking_implants = {
 thought_enforcement = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict3Cost
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -581,21 +534,12 @@ thought_enforcement = {
 extended_shifts = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = extended_shifts }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = extended_shifts
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -626,21 +570,12 @@ extended_shifts = {
 synaptic_reinforcement = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = synaptic_reinforcement }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = synaptic_reinforcement
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -658,28 +593,19 @@ synaptic_reinforcement = {
 	}
 
 	ai_weight = {
-		weight = @EdictHighPrio
+		weight = @EdictLowPrio
 	}
 }
 
 industrial_maintenance = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = industrial_maintenance }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = industrial_maintenance
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -694,28 +620,19 @@ industrial_maintenance = {
 	}
 
 	ai_weight = {
-		weight = @EdictHighPrio
+		weight = @EdictLowPrio
 	}
 }
 
 drone_overdrive = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = drone_overdrive }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = drone_overdrive
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -745,27 +662,18 @@ drone_overdrive = {
 capacity_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = capacity_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = capacity_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		planet_technician_produces_mult = 0.50
-		planet_technician_energy_upkeep_add = 0.5
+		planet_technician_energy_upkeep_add = 2.5
 	}
 
 	prerequisites = {
@@ -774,39 +682,25 @@ capacity_subsidies = {
 
 	ai_weight = {
 		weight = @EdictHighPrio
-
-		modifier = {
-			factor = 2
-			has_monthly_income = { resource = energy value < 250 }
-		}
 	}
 }
 
 mining_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = mining_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = mining_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		planet_miners_produces_mult = 0.50 # Note: Also affects organic special resource miners!
-		planet_miners_energy_upkeep_add = 0.5
-		planet_sr_miners_energy_upkeep_add = 0.5 #Note: _add modifiers don't apply to children, but _mult ones do, so this is necessary here
+		planet_miners_energy_upkeep_add = 2.5
+		planet_sr_miners_energy_upkeep_add = 2.5 #Note: _add modifiers don't apply to children, but _mult ones do, so this is necessary here
 	}
 
 	prerequisites = {
@@ -814,40 +708,25 @@ mining_subsidies = {
 	}
 
 	ai_weight = {
-		weight = @EdictMedPrio
-
-		modifier = {
-			factor = 2
-			has_monthly_income = { resource = minerals value < 0 }
-			has_monthly_income = { resource = energy value > 250 }
-		}
+		weight = @EdictHighPrio
 	}
 }
 
 farming_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = farming_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = farming_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		planet_farmers_produces_mult = 0.50
-		planet_farmers_energy_upkeep_add = 0.5
+		planet_farmers_energy_upkeep_add = 2.5
 	}
 
 	prerequisites = {
@@ -855,40 +734,25 @@ farming_subsidies = {
 	}
 
 	ai_weight = {
-		weight = @EdictMedPrio
-
-		modifier = {
-			factor = 2
-			has_monthly_income = { resource = food value < 0 }
-			has_monthly_income = { resource = energy value > 250 }
-		}
+		weight = @EdictHighPrio
 	}
 }
 
 industrial_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = industrial_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = industrial_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		planet_artisans_produces_mult = 0.10
-		planet_artisans_energy_upkeep_add = 1
+		planet_artisans_energy_upkeep_add = 5
 	}
 
 	potential = {
@@ -905,39 +769,24 @@ industrial_subsidies = {
 
 	ai_weight = {
 		weight = @EdictMedPrio
-
-		modifier = {
-			factor = 2
-			has_monthly_income = { resource = consumer_goods value < 0 }
-			has_monthly_income = { resource = energy value > 250 }
-		}
 	}
 }
 
 forge_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = forge_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = forge_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
 	modifier = {
 		planet_metallurgists_produces_mult = 0.10
-		planet_metallurgists_energy_upkeep_add = 1
+		planet_metallurgists_energy_upkeep_add = 5
 	}
 
 	prerequisites = {
@@ -945,28 +794,19 @@ forge_subsidies = {
 	}
 
 	ai_weight = {
-		weight = @EdictHighPrio
+		weight = @EdictLowPrio
 	}
 }
 
 research_subsidies = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = research_subsidies }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = research_subsidies
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict3Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -987,12 +827,12 @@ research_subsidies = {
 veneration_of_saints = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict1Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1013,21 +853,12 @@ veneration_of_saints = {
 peace_festivals = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = peace_festivals }
-			}
-			influence = 100
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = peace_festivals
-			}
-			influence = 50
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1041,28 +872,19 @@ peace_festivals = {
 	}
 
 	ai_weight = {
-		weight = @EdictHighPrio
+		weight = @EdictMedPrio
 	}
 }
 
 information_quarantine = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = information_quarantine }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = information_quarantine
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1083,12 +905,12 @@ information_quarantine = {
 encourage_free_thought = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict1Cost
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1108,21 +930,12 @@ encourage_free_thought = {
 map_the_stars = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = map_the_stars }
-			}
-			influence = 200
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = map_the_stars
-			}
-			influence = 100
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1148,12 +961,12 @@ map_the_stars = {
 land_of_opportunity = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = {
-			influence = @Edict2Cost
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1175,21 +988,12 @@ land_of_opportunity = {
 greater_than_ourselves = {
 	length = @EdictPerpetual
 	icon = "GFX_edict_type_policy"
-	edict_cap_usage = 1
 
 	resources = {
 		category = edicts
-		cost = { #Activation Cost
-			trigger = {
-				NOT = { has_edict = greater_than_ourselves }
-			}
-			influence = 300
-		}
-		cost = { #Deactivation Cost
-			trigger = {
-				has_edict = greater_than_ourselves
-			}
-			influence = 200
+		upkeep = {
+			unity = @Edict2Cost
+			multiplier = value:edict_size_effect
 		}
 	}
 
@@ -1207,6 +1011,236 @@ greater_than_ourselves = {
 	}
 
 	ai_weight = {
-		weight = @EdictHighPrio
+		weight = @EdictLowPrio
+	}
+}
+
+relay_network_dummy = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	potential = {
+		always = no
+	}
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+	}
+
+	modifier = {
+		custom_tooltip = edict_relay_network_dummy_tooltip
+	}
+	prerequisites = { "tech_hyper_relays" }
+
+	show_tech_unlock_if = { always = yes }
+}
+
+relay_network_stability = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = exotic_gases }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				has_megastructure = hyper_relay
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_galactic_bureaucracy"
+	}
+
+	modifier = {
+		megastructures_hyper_relay_exotic_gases_upkeep_add = 0.5
+	}
+
+	relay_network_modifier = {
+		relay_network_stability_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictHighPrio
+			has_monthly_income = { resource = exotic_gases value > 25 }
+		}
+	}
+}
+
+relay_network_movement = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = volatile_motes }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				has_megastructure = hyper_relay
+			}
+		}
+
+	}
+
+	prerequisites = {
+		"tech_hyper_drive_3"
+	}
+
+	modifier = {
+		megastructures_hyper_relay_volatile_motes_upkeep_add = 0.5
+	}
+
+	relay_network_modifier = {
+		relay_network_movement_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = volatile_motes value > 25 }
+		}
+	}
+}
+
+relay_network_amenities = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		is_gestalt = no
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = rare_crystals }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				has_megastructure = hyper_relay
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_artificial_moral_codes"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = no
+	}
+
+	modifier = {
+		megastructures_hyper_relay_rare_crystals_upkeep_add = 0.5
+	}
+
+	relay_network_modifier = {
+		relay_network_amenities_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = rare_crystals value > 25 }
+		}
+	}
+}
+
+relay_network_amenities_gestalt = {
+	length = @EdictPerpetual
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = @Edict1Cost
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	potential = {
+		has_overlord_dlc = yes
+		is_gestalt = yes
+		has_technology = tech_hyper_relays
+	}
+
+	allow = {
+		NOT = { has_deficit = rare_crystals }
+		exists = capital_scope
+		capital_scope = {
+			solar_system = {
+				has_megastructure = hyper_relay
+			}
+		}
+	}
+
+	prerequisites = {
+		"tech_unity_of_purpose"
+	}
+
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
+
+	modifier = {
+		megastructures_hyper_relay_rare_crystals_upkeep_add = 0.5
+	}
+
+	relay_network_modifier = {
+		relay_network_amenities_gestalt_edict_modifier = 1
+	}
+
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = @EdictMedPrio
+			has_monthly_income = { resource = rare_crystals value > 25 }
+		}
 	}
 }

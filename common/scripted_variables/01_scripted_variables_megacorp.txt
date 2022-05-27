@@ -11,17 +11,19 @@
 @ruler_job_weight = 1000
 @colonist_job_weight = 200
 @soldier_job_weight = 100
+@high_prio_specialist_job_weight = 15
 @specialist_job_weight = 10
 @criminal_job_weight = 5
 @worker_prio_job_weight = 1.25 # Bit higher than other worker jobs
 @worker_job_weight = 1
 @clerk_job_weight = 0.8 # Bit lower than other worker jobs
+@maintenance_drone_job = 3
 
-@spawner_drone_job_weight = 1100
+@spawner_drone_job_weight = 1300
 @synapse_drone_job_weight = 1000
 @warrior_drone_job_weight = 100
 @complex_drone_job_weight = 10
-@simple_drone_job_weight = 1
+@simple_drone_job_weight = 5
 
 @living_standard_energy_normal = 5.0
 @living_standard_energy_unemployed = 1.25
@@ -42,13 +44,25 @@
 @living_standard_luxuries_normal = 2.25
 @living_standard_luxuries_low = 0.5
 @living_standard_luxuries_very_low = 0.25
+@living_standard_luxuries_none = 0.00
 
-@trade_value_prosperity_gospel = 1.65
+@living_standard_luxuries_very_high_decadent = 7.5
+@living_standard_luxuries_high_decadent = 3.75
+@living_standard_luxuries_normal_decadent = 2.50
+@living_standard_luxuries_low_decadent = 0.625
+@living_standard_luxuries_very_low_decadent = 0.30
+
+@trade_value_prosperity_gospel = 1.66
 @trade_value_shared_burden = 1.25
 @trade_value_very_high = 2.50
-@trade_value_high = 1.65
+@trade_value_high = 1.66
 @trade_value_normal = 1
 @trade_value_low = 0.5
 @trade_value_very_low = 0.25
 
 @unemployment_subsidies = 5
+
+@bailout_basic_base_amount = 1000 # Energy, Minerals & Food
+@bailout_consumer_goods_base_amount = 500
+@bailout_alloys_base_amount = 250
+@bailout_strategic_base_amount = 100 # Crystals, Gases & Motes

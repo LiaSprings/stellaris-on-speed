@@ -12,7 +12,7 @@ matter_decompressor_0 = {
 		category = megastructures
 		cost = {
 			alloys = 5000
-			influence = 300
+			unity = 5000
 		}
 
 		upkeep = {
@@ -56,9 +56,7 @@ matter_decompressor_0 = {
 			is_star_class = sc_black_hole
 		}
 		custom_tooltip = {
-			fail_text = "requires_no_existing_megastructure"
-			#will be changed to type-specific string with next translation pass
-			#fail_text = "requires_no_existing_matter_decompressor"
+			fail_text = "requires_no_existing_matter_decompressor"
 			from = {
 				NOT = {
 					any_owned_megastructure = {
@@ -76,7 +74,6 @@ matter_decompressor_0 = {
 		}
 		custom_tooltip = {
 			fail_text = "requires_no_existing_megastructure"
-			#NOT = { has_any_megastructure = yes }
 			has_no_non_gate_megastructure = yes
 		}
 	}
@@ -145,6 +142,7 @@ matter_decompressor_1 = {
 		category = megastructures
 		cost = {
 			alloys = 12500
+			unity = 5000
 		}
 
 		produces = {
@@ -181,6 +179,7 @@ matter_decompressor_2 = {
 		category = megastructures
 		cost = {
 			alloys = 12500
+			unity = 5000
 		}
 
 		produces = {
@@ -216,6 +215,7 @@ matter_decompressor_3 = {
 		category = megastructures
 		cost = {
 			alloys = 12500
+			unity = 5000
 		}
 
 		produces = {
@@ -252,6 +252,7 @@ matter_decompressor_4 = {
 		category = megastructures
 		cost = {
 			alloys = 12500
+			unity 5000
 		}
 
 		produces = {
@@ -323,6 +324,7 @@ matter_decompressor_restored = {
 		category = megastructures
 		cost = {
 			alloys = 20000
+			unity = 7500
 		}
 
 		produces = {
